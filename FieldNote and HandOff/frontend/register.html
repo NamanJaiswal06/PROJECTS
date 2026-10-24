@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account — FieldNote / HandOff</title>
+  <meta name="description" content="Create your FieldNote HandOff account — the voice-first field maintenance assistant for industrial technicians." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/auth.css" />
+</head>
+<body>
+  <main class="auth-page" role="main">
+
+    <!-- ── Left branding panel ───────────────────────────── -->
+    <aside class="auth-panel" aria-hidden="true">
+      <a href="/" class="auth-logo">
+        <div class="auth-logo-icon">🎙</div>
+        <span class="auth-logo-text">Field<span>Note</span></span>
+      </a>
+
+      <h1 class="auth-headline">
+        Your team's<br />
+        <span class="text-gradient">shared memory</span><br />
+        starts here.
+      </h1>
+      <p class="auth-subline">
+        Every spoken observation, every resolved issue, every handoff —
+        searchable and ready for the next technician who picks up the job.
+      </p>
+
+      <ul class="auth-features" aria-label="Key features">
+        <li class="auth-feature">
+          <span class="auth-feature-icon">🎙</span>
+          Hands-free voice logging — no typing required
+        </li>
+        <li class="auth-feature">
+          <span class="auth-feature-icon">⚡</span>
+          Sub-second retrieval from any device
+        </li>
+        <li class="auth-feature">
+          <span class="auth-feature-icon">🛡</span>
+          Risk-gated confirmation for high-stakes actions
+        </li>
+        <li class="auth-feature">
+          <span class="auth-feature-icon">📋</span>
+          Auto-generated structured shift handoffs
+        </li>
+      </ul>
+    </aside>
+
+    <!-- ── Right form panel ──────────────────────────────── -->
+    <section class="auth-form-panel">
+      <div class="auth-card">
+        <header class="auth-card-header">
+          <h2 class="auth-card-title">Create your account</h2>
+          <p class="auth-card-subtitle">
+            Already have an account?
+            <a href="login.html" id="go-login">Sign in</a>
+          </p>
+        </header>
+
+        <!-- Error / success banners -->
+        <div id="register-error" class="form-error" role="alert" aria-live="assertive"></div>
+        <div id="register-success" class="form-success" role="status" aria-live="polite"></div>
+
+        <form id="register-form" novalidate autocomplete="on">
+
+          <!-- Username -->
+          <div class="form-group">
+            <label class="form-label" for="reg-username">Username</label>
+            <div class="form-input-wrap">
+              <input
+                id="reg-username"
+                name="username"
+                type="text"
+                class="form-input"
+                placeholder="e.g. raj_tech"
+                autocomplete="username"
+                minlength="3"
+                maxlength="30"
+                pattern="[a-zA-Z0-9_]+"
+                required
+              />
+              <span class="form-input-icon" aria-hidden="true">👤</span>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="form-group">
+            <label class="form-label" for="reg-email">Work email</label>
+            <div class="form-input-wrap">
+              <input
+                id="reg-email"
+                name="email"
+                type="email"
+                class="form-input"
+                placeholder="you@company.com"
+                autocomplete="email"
+                required
+              />
+              <span class="form-input-icon" aria-hidden="true">✉</span>
+            </div>
+          </div>
+
+          <!-- Role selector -->
+          <div class="form-group">
+            <span class="form-label" id="role-label">Your role</span>
+            <div class="role-selector" role="radiogroup" aria-labelledby="role-label">
+              <div class="role-option">
+                <input
+                  type="radio"
+                  id="role-technician"
+                  name="role"
+                  value="technician"
+                  checked
+                />
+                <label for="role-technician">
+                  <span class="role-icon">🔧</span>
+                  Technician
+                </label>
+              </div>
+              <div class="role-option">
+                <input
+                  type="radio"
+                  id="role-supervisor"
+                  name="role"
+                  value="supervisor"
+                />
+                <label for="role-supervisor">
+                  <span class="role-icon">📊</span>
+                  Supervisor
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="form-group">
+            <label class="form-label" for="reg-password">Password</label>
+            <div class="form-input-wrap">
+              <input
+                id="reg-password"
+                name="password"
+                type="password"
+                class="form-input"
+                placeholder="Min. 8 characters"
+                autocomplete="new-password"
+                minlength="8"
+                required
+              />
+              <span class="form-input-icon" aria-hidden="true">🔑</span>
+              <button
+                type="button"
+                id="toggle-reg-password"
+                class="input-action"
+                aria-label="Toggle password visibility"
+                title="Show / hide password"
+              >👁</button>
+            </div>
+            <!-- Strength indicator -->
+            <div class="password-strength" aria-hidden="true">
+              <div class="strength-bar"></div>
+              <div class="strength-bar"></div>
+              <div class="strength-bar"></div>
+              <div class="strength-bar"></div>
+            </div>
+            <p class="strength-label" aria-live="polite"></p>
+          </div>
+
+          <!-- Confirm password -->
+          <div class="form-group">
+            <label class="form-label" for="reg-confirm">Confirm password</label>
+            <div class="form-input-wrap">
+              <input
+                id="reg-confirm"
+                name="confirm"
+                type="password"
+                class="form-input"
+                placeholder="Repeat your password"
+                autocomplete="new-password"
+                required
+              />
+              <span class="form-input-icon" aria-hidden="true">🔒</span>
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <button
+            type="submit"
+            id="register-submit"
+            class="btn-primary"
+            aria-label="Create your FieldNote account"
+          >
+            <span class="btn-text">Create account</span>
+            <span class="btn-spinner" aria-hidden="true"></span>
+          </button>
+
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <script type="module" src="assets/js/auth.js"></script>
+</body>
+</html>

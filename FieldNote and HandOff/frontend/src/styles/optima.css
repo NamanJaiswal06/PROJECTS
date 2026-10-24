@@ -1,0 +1,947 @@
+/* ==========================================================================
+   OPTIMA DESIGN SYSTEM — FieldNote & HandOff Hackathon Frontend
+   Inspired by Optima Fintech Dashboard Design (Gold Header, Center Cutout Dial, Pastel Cards)
+   ========================================================================== */
+
+:root {
+  /* Brand Color Palette */
+  --header-gold: #F4A522;
+  --header-gold-dark: #E29310;
+  --header-gold-gradient: linear-gradient(180deg, #F7AD2F 0%, #EE9B19 100%);
+  --header-gold-soft: rgba(244, 165, 34, 0.12);
+
+  --clr-bg: #F3F6F5;
+  --clr-card-bg: #FFFFFF;
+  --clr-card-border: rgba(0, 0, 0, 0.04);
+  
+  --clr-text-main: #1A212B;
+  --clr-text-muted: #677484;
+  --clr-text-light: #8E9BAA;
+  --clr-text-gold: #D97706;
+
+  /* Pastel Accent Cards (Matching OPTIMA Image) */
+  --card-teal: linear-gradient(135deg, #81C7B9 0%, #4DB6AC 100%);
+  --card-teal-solid: #4DB6AC;
+  --card-coral: linear-gradient(135deg, #E57373 0%, #E56A6A 100%);
+  --card-coral-solid: #E57373;
+  --card-blue: linear-gradient(135deg, #64B5F6 0%, #42A5F5 100%);
+  
+  --clr-accent-green: #10B981;
+  --clr-accent-red: #EF4444;
+  --clr-accent-yellow: #F59E0B;
+  --clr-accent-blue: #3B82F6;
+  --clr-accent-purple: #8B5CF6;
+
+  /* Layout & Geometry */
+  --radius-header: 32px;
+  --radius-card: 24px;
+  --radius-pill: 9999px;
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.03);
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.05);
+  --shadow-header: 0 12px 36px rgba(244, 165, 34, 0.25);
+  
+  /* Fonts */
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Outfit', var(--font-sans);
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* Base Resets */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--clr-bg);
+  color: var(--clr-text-main);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  outline: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   APP CONTAINER & OPTIMA HEADER
+   ========================================================================== */
+
+.app-wrapper {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 16px 24px 40px;
+  min-height: 100vh;
+}
+
+/* Gold Header Banner with Center Cutout Gauge */
+.optima-header {
+  position: relative;
+  background: var(--header-gold-gradient);
+  border-radius: var(--radius-header);
+  color: #FFFFFF;
+  padding: 24px 36px 36px;
+  box-shadow: var(--shadow-header);
+  margin-bottom: 50px;
+  z-index: 10;
+}
+
+.optima-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.optima-logo-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.optima-logo-text {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.optima-logo-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #FFFFFF;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  animation: pulse-glow 2s infinite;
+}
+
+.optima-nav-tabs {
+  display: flex;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(12px);
+  padding: 6px;
+  border-radius: var(--radius-pill);
+}
+
+.optima-tab-btn {
+  padding: 8px 20px;
+  border-radius: var(--radius-pill);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.optima-tab-btn:hover {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.optima-tab-btn.active {
+  background: #FFFFFF;
+  color: var(--header-gold-dark);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+.optima-header-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+}
+
+.optima-user-welcome {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.user-avatar-frame {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.8);
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--header-gold-dark);
+}
+
+.user-greeting-text {
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.user-name-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.2;
+}
+
+/* Center Curved Cutout Gauge (Optima Signature Element) */
+.optima-center-gauge-wrapper {
+  position: absolute;
+  left: 50%;
+  bottom: -68px;
+  transform: translateX(-50%);
+  width: 250px;
+  height: 135px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.gauge-cutout-bg {
+  position: absolute;
+  top: -12px;
+  width: 270px;
+  height: 145px;
+  background-color: var(--header-gold-dark);
+  border-bottom-left-radius: 140px;
+  border-bottom-right-radius: 140px;
+  background: var(--header-gold-gradient);
+  padding: 10px;
+  box-shadow: 0 16px 30px rgba(226, 147, 16, 0.35);
+  border: 4px solid var(--clr-bg);
+  border-top: none;
+}
+
+.gauge-dial-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 8px;
+}
+
+.gauge-svg {
+  width: 190px;
+  height: 95px;
+}
+
+.gauge-text-overlay {
+  position: absolute;
+  bottom: 10px;
+  text-align: center;
+}
+
+.gauge-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -0.01em;
+}
+
+.gauge-subtitle {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.9;
+  color: #FFFFFF;
+}
+
+.optima-header-metrics {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-align: right;
+}
+
+.metrics-icon-btn {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  transition: transform 0.2s;
+}
+
+.metrics-icon-btn:hover {
+  transform: scale(1.08);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.metrics-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.metrics-val {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   GRID LAYOUT (Matching OPTIMA 3-Column Layout)
+   ========================================================================== */
+
+.optima-grid-dashboard {
+  display: grid;
+  grid-template-columns: 310px 1fr 340px;
+  gap: 24px;
+}
+
+@media (max-width: 1200px) {
+  .optima-grid-dashboard {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .optima-grid-dashboard {
+    grid-template-columns: 1fr;
+  }
+}
+
+.optima-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ==========================================================================
+   CARD STYLES (Optima Standard, Soft Teal, Soft Coral)
+   ========================================================================== */
+
+.optima-card {
+  background: var(--clr-card-bg);
+  border-radius: var(--radius-card);
+  padding: 24px;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--clr-card-border);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.optima-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.07);
+}
+
+/* Special Teal Smart Card (Left Top) */
+.card-teal-smart {
+  background: var(--card-teal);
+  color: #FFFFFF;
+  position: relative;
+  overflow: hidden;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 12px 30px rgba(77, 182, 172, 0.35);
+}
+
+.card-teal-smart::after {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -30%;
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0) 70%);
+  pointer-events: none;
+}
+
+.card-nfc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-chip-icon {
+  width: 38px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.card-serial {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  letter-spacing: 0.25em;
+  opacity: 0.95;
+  margin: 16px 0;
+}
+
+.card-tech-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.card-tech-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.card-tech-unit {
+  font-size: 0.78rem;
+  opacity: 0.85;
+  font-family: var(--font-mono);
+}
+
+/* Special Coral Voice Action Card (Left Middle) */
+.card-coral-action {
+  background: var(--card-coral);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  box-shadow: 0 12px 30px rgba(229, 115, 115, 0.35);
+  cursor: pointer;
+}
+
+.coral-mic-frame {
+  width: 52px;
+  height: 52px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.coral-action-text h4 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.coral-action-text p {
+  font-size: 0.78rem;
+  opacity: 0.9;
+  margin-top: 4px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Quick Action Mini Pills Row */
+.optima-mini-actions-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.mini-action-pill {
+  background: var(--clr-card-bg);
+  border-radius: 18px;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--clr-card-border);
+  transition: all 0.2s;
+}
+
+.mini-action-pill:hover {
+  border-color: var(--header-gold);
+  transform: translateY(-2px);
+}
+
+.pill-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #FFF8EE;
+  color: var(--header-gold-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pill-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--clr-text-main);
+}
+
+.pill-plus-btn {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #EAF7F4;
+  color: #4DB6AC;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   TRANSACTIONS / ACTIVITY STREAM CARD (Middle Column)
+   ========================================================================== */
+
+.card-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.card-title-main {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--clr-text-main);
+}
+
+.card-action-link {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--clr-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.2s;
+}
+
+.card-action-link:hover {
+  color: var(--header-gold-dark);
+}
+
+.activity-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.activity-item-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: #F8FAF9;
+  transition: background 0.2s;
+}
+
+.activity-item-card:hover {
+  background: #EEF3F1;
+}
+
+.activity-item-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.activity-icon-badge {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.activity-icon-badge.resolved {
+  background: #E6F4EA;
+  color: #137333;
+}
+
+.activity-icon-badge.critical {
+  background: #FCE8E6;
+  color: #C5221F;
+}
+
+.activity-icon-badge.monitoring {
+  background: #FEF7E0;
+  color: #B06000;
+}
+
+.activity-info h5 {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--clr-text-main);
+}
+
+.activity-info p {
+  font-size: 0.76rem;
+  color: var(--clr-text-muted);
+  margin-top: 2px;
+}
+
+.activity-item-right {
+  text-align: right;
+}
+
+.activity-val-tag {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.activity-val-tag.plus { color: #10B981; }
+.activity-val-tag.minus { color: #EF4444; }
+
+/* ==========================================================================
+   RIGHT COLUMN: RADAR CHART & TOP GAINERS STREAM
+   ========================================================================== */
+
+.equipment-stream-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.equipment-stream-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-radius: 16px;
+  transition: background 0.2s;
+}
+
+.equipment-stream-item:hover {
+  background: #F8FAF9;
+}
+
+.eq-brand-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: var(--clr-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  color: var(--clr-text-main);
+}
+
+.eq-stream-details h6 {
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.eq-stream-details p {
+  font-size: 0.75rem;
+  color: var(--clr-text-muted);
+}
+
+.eq-stream-metric {
+  text-align: right;
+}
+
+.eq-status-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.eq-status-badge.operational {
+  background: #E6F4EA;
+  color: #137333;
+}
+
+.eq-status-badge.degraded {
+  background: #FEF7E0;
+  color: #B06000;
+}
+
+.eq-status-badge.critical {
+  background: #FCE8E6;
+  color: #C5221F;
+}
+
+/* ==========================================================================
+   INTERACTIVE VOICE AGENT DRAWER / MODAL
+   ========================================================================== */
+
+.voice-agent-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(12px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.voice-agent-window {
+  background: #FFFFFF;
+  border-radius: 32px;
+  width: 100%;
+  max-width: 680px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.voice-agent-header {
+  background: var(--header-gold-gradient);
+  color: #FFFFFF;
+  padding: 24px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.voice-agent-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.voice-agent-title h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.voice-agent-body {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Audio Visualizer Waves */
+.soundwave-visualizer {
+  height: 80px;
+  background: #FAFBFB;
+  border-radius: 20px;
+  border: 1px dashed rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 20px;
+}
+
+.wave-bar {
+  width: 6px;
+  height: 20%;
+  background: var(--header-gold);
+  border-radius: 4px;
+  transition: height 0.15s ease;
+}
+
+.soundwave-visualizer.recording .wave-bar {
+  animation: soundwave-pulse 1.2s infinite ease-in-out alternate;
+}
+
+.soundwave-visualizer.recording .wave-bar:nth-child(1) { animation-delay: 0.1s; }
+.soundwave-visualizer.recording .wave-bar:nth-child(2) { animation-delay: 0.3s; }
+.soundwave-visualizer.recording .wave-bar:nth-child(3) { animation-delay: 0.2s; }
+.soundwave-visualizer.recording .wave-bar:nth-child(4) { animation-delay: 0.4s; }
+.soundwave-visualizer.recording .wave-bar:nth-child(5) { animation-delay: 0.15s; }
+
+@keyframes soundwave-pulse {
+  0% { height: 15%; background: var(--header-gold); }
+  50% { height: 85%; background: var(--card-coral-solid); }
+  100% { height: 35%; background: var(--card-teal-solid); }
+}
+
+.mic-control-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.mic-giant-btn {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--header-gold-gradient);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  box-shadow: 0 10px 25px rgba(244, 165, 34, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.mic-giant-btn:hover {
+  transform: scale(1.06);
+}
+
+.mic-giant-btn.recording {
+  background: var(--card-coral);
+  box-shadow: 0 10px 25px rgba(229, 115, 115, 0.5);
+  animation: pulse-ring 1.5s infinite;
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(229, 115, 115, 0.6); }
+  70% { box-shadow: 0 0 0 20px rgba(229, 115, 115, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(229, 115, 115, 0); }
+}
+
+/* Tool execution pills */
+.tool-call-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tool-chip {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  background: #EEF6FF;
+  color: #2563EB;
+  border: 1px solid #BFDBFE;
+  padding: 4px 12px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ==========================================================================
+   GLASSMORPHISM AUTHENTICATION VIEWS
+   ========================================================================== */
+
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at top right, #FDE68A 0%, #F3F6F5 50%);
+  padding: 24px;
+}
+
+.auth-box {
+  background: #FFFFFF;
+  border-radius: 32px;
+  padding: 40px;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.auth-logo {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--header-gold-dark);
+  letter-spacing: 0.12em;
+}
+
+.input-field {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 1px solid #E2E8F0;
+  font-family: inherit;
+  font-size: 0.95rem;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.input-field:focus {
+  border-color: var(--header-gold);
+  box-shadow: 0 0 0 3px rgba(244, 165, 34, 0.15);
+}
+
+.btn-primary-gold {
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  background: var(--header-gold-gradient);
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 1rem;
+  box-shadow: 0 8px 20px rgba(244, 165, 34, 0.35);
+  transition: transform 0.2s;
+}
+
+.btn-primary-gold:hover {
+  transform: translateY(-2px);
+}
+
+.btn-demo-quick {
+  width: 100%;
+  padding: 12px;
+  border-radius: 14px;
+  background: #F8FAF9;
+  border: 1px dashed var(--header-gold);
+  color: var(--header-gold-dark);
+  font-weight: 700;
+  font-size: 0.88rem;
+  margin-top: 12px;
+  transition: background 0.2s;
+}
+
+.btn-demo-quick:hover {
+  background: #FEF7E0;
+}
+
+/* Keyframes */
+@keyframes pulse-glow {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.6; }
+  100% { transform: scale(1); opacity: 1; }
+}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — FieldNote / HandOff</title>
+  <meta name="description" content="Sign in to FieldNote HandOff — the voice-first field maintenance assistant for industrial technicians." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/auth.css" />
+</head>
+<body>
+  <main class="auth-page" role="main">
+
+    <!-- ── Left branding panel ───────────────────────────── -->
+    <aside class="auth-panel" aria-hidden="true">
+      <a href="/" class="auth-logo">
+        <div class="auth-logo-icon">🎙</div>
+        <span class="auth-logo-text">Field<span>Note</span></span>
+      </a>
+
+      <h1 class="auth-headline">
+        <span class="text-gradient">Voice-first</span><br />
+        maintenance memory.
+      </h1>
+      <p class="auth-subline">
+        Log observations hands-free, retrieve past cases instantly,
+        and hand off to the next technician with zero friction.
+      </p>
+
+      <ul class="auth-features" aria-label="Key features">
+        <li class="auth-feature">
+          <span class="auth-feature-icon">🔍</span>
+          Semantic search across every unit's history
+        </li>
+        <li class="auth-feature">
+          <span class="auth-feature-icon">🤝</span>
+          Structured shift handoffs in seconds
+        </li>
+        <li class="auth-feature">
+          <span class="auth-feature-icon">✏️</span>
+          Spoken corrections update the record instantly
+        </li>
+        <li class="auth-feature">
+          <span class="auth-feature-icon">🔒</span>
+          Unit-scoped retrieval — zero cross-unit leakage
+        </li>
+      </ul>
+    </aside>
+
+    <!-- ── Right form panel ──────────────────────────────── -->
+    <section class="auth-form-panel">
+      <div class="auth-card">
+        <header class="auth-card-header">
+          <h2 class="auth-card-title">Welcome back</h2>
+          <p class="auth-card-subtitle">
+            Don't have an account?
+            <a href="register.html" id="go-register">Create one</a>
+          </p>
+        </header>
+
+        <!-- Error banner -->
+        <div id="login-error" class="form-error" role="alert" aria-live="assertive"></div>
+
+        <form id="login-form" novalidate autocomplete="on">
+
+          <!-- Email -->
+          <div class="form-group">
+            <label class="form-label" for="login-email">Email address</label>
+            <div class="form-input-wrap">
+              <input
+                id="login-email"
+                name="email"
+                type="email"
+                class="form-input"
+                placeholder="you@company.com"
+                autocomplete="email"
+                required
+              />
+              <span class="form-input-icon" aria-hidden="true">✉</span>
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="form-group">
+            <label class="form-label" for="login-password">Password</label>
+            <div class="form-input-wrap">
+              <input
+                id="login-password"
+                name="password"
+                type="password"
+                class="form-input"
+                placeholder="••••••••"
+                autocomplete="current-password"
+                required
+              />
+              <span class="form-input-icon" aria-hidden="true">🔑</span>
+              <button
+                type="button"
+                id="toggle-password"
+                class="input-action"
+                aria-label="Toggle password visibility"
+                title="Show / hide password"
+              >👁</button>
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <button
+            type="submit"
+            id="login-submit"
+            class="btn-primary"
+            aria-label="Sign in to your account"
+          >
+            <span class="btn-text">Sign in</span>
+            <span class="btn-spinner" aria-hidden="true"></span>
+          </button>
+
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <script type="module" src="assets/js/auth.js"></script>
+</body>
+</html>

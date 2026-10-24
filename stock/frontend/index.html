@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stock Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<h2>Stock Dashboard</h2>
+
+<select id="companySelect"></select>
+<canvas id="chart"></canvas>
+
+<script>
+const api = "http://127.0.0.1:8000";
+
+async function loadCompanies() {
+    const res = await fetch(api + "/companies");
+    const data = await res.json();
+
+    let select = document.getElementById("companySelect");
+
+    data.forEach(c => {
+        let option = document.createElement("option");
+        option.value = c;
+        option.text = c;
+        select.appendChild(option);
+    });
+
+    loadChart(data[0]);
+}
+
+async function loadChart(symbol) {
+    const res = await fetch(api + "/data/" + symbol);
+    const data = await res.json();
+
+    const labels = data.map(d => d.Date);
+    const prices = data.map(d => d.Close);
+
+    new Chart(document.getElementById("chart"), {
+        type: "line",
+        data: {
+            labels: labels,
+            datasets: [{
+                label: symbol,
+                data: prices
+            }]
+        }
+    });
+}
+
+document.getElementById("companySelect")
+.addEventListener("change", (e) => {
+    loadChart(e.target.value);
+});
+
+loadCompanies();
+</script>
+
+</body>
+</html>
